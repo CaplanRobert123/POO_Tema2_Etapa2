@@ -1,6 +1,7 @@
 package data;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import storage.Producer;
 
 import java.util.List;
 
@@ -9,15 +10,18 @@ public class DistributorOutput {
     private long budget;
     private boolean isBankrupt;
     private List<ConsumerContract> contractList;
+    private Producer producer;
 
     public DistributorOutput(final int id,
                              final long budget,
                              final boolean isBankrupt,
-                             final List<ConsumerContract> contractList) {
+                             final List<ConsumerContract> contractList,
+                             final Producer producer) {
         this.id = id;
         this.budget = budget;
         this.isBankrupt = isBankrupt;
         this.contractList = contractList;
+        this.producer = producer;
     }
 
     /**
@@ -75,5 +79,13 @@ public class DistributorOutput {
      */
     public void setContractList(List<ConsumerContract> contractList) {
         this.contractList = contractList;
+    }
+
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Producer producer) {
+        this.producer = producer;
     }
 }

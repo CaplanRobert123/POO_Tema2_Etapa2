@@ -25,6 +25,15 @@ public class Distributor implements Player {
     private boolean isBankrupt;
     private long energyNeededKW;
     private EnergyChoiceStrategyType producerStrategy;
+    private Producer currentProducer;
+
+    public Producer getCurrentProducer() {
+        return currentProducer;
+    }
+
+    public void setCurrentProducer(Producer currentProducer) {
+        this.currentProducer = currentProducer;
+    }
 
     public long getEnergyNeededKW() {
         return energyNeededKW;

@@ -2,15 +2,34 @@ package storage;
 
 import entities.EnergyType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Producer {
     private int id;
     private EnergyType energyType;
     private int maxDistributors;
-    private long priceKW;
+    private int currentDistributors;
+    private float priceKW;
     private long energyPerDistributor;
     private List<MonthlyStat> monthlyStats;
+    private List<Distributor> currentDistributorList = new ArrayList<>();
+
+    public List<Distributor> getCurrentDistributorList() {
+        return currentDistributorList;
+    }
+
+    public void setCurrentDistributorList(List<Distributor> currentDistributorList) {
+        this.currentDistributorList = currentDistributorList;
+    }
+
+    public int getCurrentDistributors() {
+        return currentDistributors;
+    }
+
+    public void setCurrentDistributors(int currentDistributors) {
+        this.currentDistributors = currentDistributors;
+    }
 
     public int getId() {
         return id;
@@ -36,11 +55,11 @@ public class Producer {
         this.maxDistributors = maxDistributors;
     }
 
-    public long getPriceKW() {
+    public float getPriceKW() {
         return priceKW;
     }
 
-    public void setPriceKW(long priceKW) {
+    public void setPriceKW(float priceKW) {
         this.priceKW = priceKW;
     }
 

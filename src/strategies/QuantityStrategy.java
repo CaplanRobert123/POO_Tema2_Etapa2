@@ -22,4 +22,9 @@ public class QuantityStrategy implements EnergyStrategy{
         //TODO: implement
 
     }
+
+    @Override
+    public Producer searchCheapestProducer(List<Producer> producerList) {
+        return null;
+    }
 }
