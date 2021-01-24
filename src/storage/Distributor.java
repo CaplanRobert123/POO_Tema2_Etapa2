@@ -3,7 +3,10 @@ package storage;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import data.*;
+import data.ConsumerContract;
+import data.Player;
+import data.PlayerFactory;
+import data.PlayerType;
 import strategies.EnergyChoiceStrategyType;
 
 import java.util.ArrayList;
@@ -25,27 +28,39 @@ public class Distributor implements Player, Observer {
     private long energyNeededKW;
     private EnergyChoiceStrategyType producerStrategy;
     private Producer currentProducer;
-
+    /**
+     *
+     */
     public Producer getCurrentProducer() {
         return currentProducer;
     }
-
+    /**
+     *
+     */
     public void setCurrentProducer(Producer currentProducer) {
         this.currentProducer = currentProducer;
     }
-
+    /**
+     *
+     */
     public long getEnergyNeededKW() {
         return energyNeededKW;
     }
-
+    /**
+     *
+     */
     public void setEnergyNeededKW(long energyNeededKW) {
         this.energyNeededKW = energyNeededKW;
     }
-
+    /**
+     *
+     */
     public EnergyChoiceStrategyType getProducerStrategy() {
         return producerStrategy;
     }
-
+    /**
+     *
+     */
     public void setProducerStrategy(EnergyChoiceStrategyType producerStrategy) {
         this.producerStrategy = producerStrategy;
     }
@@ -153,12 +168,16 @@ public class Distributor implements Player, Observer {
     }
 
 
-//    @JsonGetter("productionCost")
+    /**
+     *
+     */
     public float getProductionCost() {
         return productionCost;
     }
 
-//    @JsonSetter("initialProductionCost")
+    /**
+     *
+     */
     public void setProductionCost(final float productionCost) {
         this.productionCost = productionCost;
     }
@@ -229,10 +248,11 @@ public class Distributor implements Player, Observer {
             }
         }
     }
-
+    /**
+     * Metoda de update, daca pretul vreunui producator se schimba.
+     */
     @Override
     public void update(Observable observable, Object o) {
-//        this.productionCost = (float) o;
-        System.out.println("am obs din observer");
+        this.productionCost = 0;
     }
 }

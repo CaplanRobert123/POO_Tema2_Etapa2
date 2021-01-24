@@ -9,6 +9,9 @@ public class PlayerFactory {
     private PlayerFactory() {
     }
 
+    /**
+     *
+     */
     public static PlayerFactory getInstance() {
         if (factory == null) {
             factory = new PlayerFactory();
@@ -16,6 +19,9 @@ public class PlayerFactory {
         return factory;
     }
 
+    /**
+     *
+     */
     public Player createPlayer(final PlayerType playerType) {
         return switch (playerType) {
             case CONSUMER -> new Consumer();

@@ -4,21 +4,41 @@ import java.util.List;
 
 public class MonthlyStat {
     private int month;
-    private List<Integer> distributorIds;
+    private List<Integer> distributorsIds;
 
+    /**
+     *
+     */
+    public MonthlyStat(int month, List<Integer> distributorsIds) {
+        this.month = month;
+        this.distributorsIds = distributorsIds;
+    }
+
+    /**
+     *
+     */
     public int getMonth() {
         return month;
     }
 
+    /**
+     *
+     */
     public void setMonth(int month) {
         this.month = month;
     }
 
-    public List<Integer> getDistributorIds() {
-        return distributorIds;
+    /**
+     *
+     */
+    public List<Integer> getDistributorsIds() {
+        return distributorsIds;
     }
 
-    public void setDistributorIds(List<Integer> distributorIds) {
-        this.distributorIds = distributorIds;
+    /**
+     *
+     */
+    public void setDistributorsIds(List<Integer> distributorsIds) {
+        this.distributorsIds = distributorsIds;
     }
 }

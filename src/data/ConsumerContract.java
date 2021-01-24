@@ -33,24 +33,28 @@ public class ConsumerContract {
     }
 
     /**
+     *
      */
     public int getDistributorId() {
         return distributorId;
     }
 
     /**
+     *
      */
     public void setDistributorId(final int distributorId) {
         this.distributorId = distributorId;
     }
 
     /**
+     *
      */
     public int getConsumerId() {
         return consumerId;
     }
 
     /**
+     *
      */
     public void setConsumerId(final int consumerId) {
         this.consumerId = consumerId;
@@ -64,24 +68,28 @@ public class ConsumerContract {
     }
 
     /**
+     *
      */
     public void setPrice(final long price) {
         this.price = price;
     }
 
     /**
+     *
      */
     public long getRemainedContractMonths() {
         return remainedContractMonths;
     }
 
     /**
+     *
      */
     public void setRemainedContractMonths(final long remainedContractMonths) {
         this.remainedContractMonths = remainedContractMonths;
     }
 
     /**
+     *
      */
     @Override
     public String toString() {

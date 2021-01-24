@@ -5,10 +5,7 @@ import communication.Writer;
 import data.ConsumerOutput;
 import data.DistributorOutput;
 import data.ProducerOutput;
-import storage.Consumer;
-import storage.Distributor;
-import storage.Input;
-import storage.Producer;
+import storage.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,17 +34,18 @@ public final class Main {
         List<Distributor> distributorList = input.getInitialData().getDistributors();
         producerList = input.getInitialData().getProducers();
         NewRound newRound = new NewRound();
-        /**
-         * Sortare daca e nevoie pentru produceri
-         */
-//        producerList.stream().sorted().collect(Collectors.toList());
-        InitialRound.doInitialRound(consumerList, distributorList);
+        InitialRound.doInitialRound(consumerList, distributorList, producerList);
         for (int i = 0; i < input.getNumberOfTurns(); i++) {
             for (Distributor distributor : distributorList) {
                 newRound.addObserver(distributor);
             }
             newRound.doRound(consumerList, distributorList, producerList,
                     input.getMonthlyUpdates().get(i));
+            for (Producer producer : producerList) {
+                MonthlyStat monthlyStat = new MonthlyStat(i + 1
+                        , producer.getCurrentDistributorIds());
+                producer.getMonthlyStats().add(monthlyStat);
+            }
             for (Distributor distributor : distributorList) {
                 for (int j = distributor.getContractList().size() - 1; j >= 0; j--) {
                     if (consumerList.get(distributor
@@ -71,7 +69,6 @@ public final class Main {
                     (long) distributor.getBudget(),
                     distributor.getIsBankrupt(),
                     distributor.getContractList(),
-                    distributor.getCurrentProducer(),
                     distributor.getEnergyNeededKW(),
                     distributor.getPrice(),
                     distributor.getProducerStrategy());
@@ -87,7 +84,6 @@ public final class Main {
             producerListOutput.add(producerOutput);
         }
         Writer writer = new Writer(consumerListOutput, distributorListOutput, producerListOutput);
-//        writer.doWrite(objectMapper, args[1]);
-        writer.doWrite(objectMapper, "D:/result.json");
+        writer.doWrite(objectMapper, args[1]);
     }
 }

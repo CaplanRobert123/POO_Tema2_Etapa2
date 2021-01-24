@@ -1,7 +1,6 @@
 package data;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import storage.Producer;
 import strategies.EnergyChoiceStrategyType;
 
 import java.util.List;
@@ -14,13 +13,11 @@ public class DistributorOutput {
     private EnergyChoiceStrategyType producerStrategy;
     private boolean isBankrupt;
     private List<ConsumerContract> contractList;
-    private Producer producer;
 
     public DistributorOutput(final int id,
                              final long budget,
                              final boolean isBankrupt,
                              final List<ConsumerContract> contractList,
-                             final Producer producer,
                              final long energyNeededKW,
                              final long contractCost,
                              final EnergyChoiceStrategyType producerStrategy) {
@@ -28,7 +25,6 @@ public class DistributorOutput {
         this.budget = budget;
         this.isBankrupt = isBankrupt;
         this.contractList = contractList;
-        this.producer = producer;
         this.energyNeededKW = energyNeededKW;
         this.contractCost = contractCost;
         this.producerStrategy = producerStrategy;
@@ -91,34 +87,44 @@ public class DistributorOutput {
         this.contractList = contractList;
     }
 
-    public Producer getProducer() {
-        return producer;
-    }
-
-    public void setProducer(Producer producer) {
-        this.producer = producer;
-    }
-
+    /**
+     *
+     */
     public long getEnergyNeededKW() {
         return energyNeededKW;
     }
 
+    /**
+     *
+     */
     public void setEnergyNeededKW(long energyNeededKW) {
         this.energyNeededKW = energyNeededKW;
     }
 
+    /**
+     *
+     */
     public long getContractCost() {
         return contractCost;
     }
 
+    /**
+     *
+     */
     public void setContractCost(long contractCost) {
         this.contractCost = contractCost;
     }
 
+    /**
+     *
+     */
     public EnergyChoiceStrategyType getProducerStrategy() {
         return producerStrategy;
     }
 
+    /**
+     *
+     */
     public void setProducerStrategy(EnergyChoiceStrategyType producerStrategy) {
         this.producerStrategy = producerStrategy;
     }

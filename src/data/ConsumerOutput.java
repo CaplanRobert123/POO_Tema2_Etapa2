@@ -14,36 +14,42 @@ public class ConsumerOutput {
     }
 
     /**
+     *
      */
     public int getId() {
         return id;
     }
 
     /**
+     *
      */
     public void setId(final int id) {
         this.id = id;
     }
 
     /**
+     *
      */
     public boolean getIsBankrupt() {
         return isBankrupt;
     }
 
     /**
+     *
      */
     public void setIsBankrupt(final boolean bankrupt) {
         isBankrupt = bankrupt;
     }
 
     /**
+     *
      */
     public long getBudget() {
         return budget;
     }
 
     /**
+     *
      */
     public void setBudget(final long budget) {
         this.budget = budget;

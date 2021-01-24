@@ -26,6 +26,7 @@ public class Writer {
     }
 
     /**
+     *
      */
     @JsonGetter("consumers")
     public List<ConsumerOutput> getConsumerList() {
@@ -33,12 +34,14 @@ public class Writer {
     }
 
     /**
+     *
      */
     public void setConsumerList(final List<ConsumerOutput> consumerList) {
         this.consumerList = consumerList;
     }
 
     /**
+     *
      */
     @JsonGetter("distributors")
     public List<DistributorOutput> getDistributorList() {
@@ -46,6 +49,7 @@ public class Writer {
     }
 
     /**
+     *
      */
     public void setDistributorList(final List<DistributorOutput> distributorList) {
         this.distributorList = distributorList;

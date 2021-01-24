@@ -10,7 +10,7 @@ public final class Calculations {
 
     /**
      * Calculeaza pretul pe care distribuitorul trebuie sa il plateasca pentru energie
-     * producatoriului sau producatorilor.
+     * producatoriului.
      */
     public static float calcProducerCosts(final Distributor distributor) {
         Producer currentProducer = distributor.getCurrentProducer();
@@ -24,8 +24,8 @@ public final class Calculations {
     public static long calcDistributorCosts(final Distributor distributor) {
         if (distributor.getContractList().size() != 0) {
             return (long) (distributor.getInfrastructureCost()
-                                + (distributor.getProductionCost()
-                                * distributor.getContractList().size()));
+                    + (distributor.getProductionCost()
+                    * distributor.getContractList().size()));
         }
         return distributor.getInfrastructureCost();
     }
@@ -36,8 +36,8 @@ public final class Calculations {
     public static long calcDistributorPrice(final Distributor distributor) {
         if (distributor.getContractList().size() == 0) {
             return (long) (distributor.getInfrastructureCost()
-                                + distributor.getProductionCost()
-                                + distributor.getProfit());
+                    + distributor.getProductionCost()
+                    + distributor.getProfit());
         }
         return Math.round(Math.floor(distributor.getInfrastructureCost()
                 / (double) distributor.getContractList().size())

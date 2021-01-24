@@ -1,23 +1,21 @@
 package strategies;
 
-import data.Calculations;
 import storage.Distributor;
 import storage.Producer;
 
 import java.util.List;
 
 public class QuantityStrategy implements EnergyStrategy {
-    Distributor distributor;
+    private final Distributor distributor;
 
     public QuantityStrategy(Distributor distributor) {
         this.distributor = distributor;
     }
 
-    @Override
-    public void printSal() {
-        System.out.println("Quantity");
-    }
-
+    /**
+     * Gasesc cel mai bun producator in functie de strategia distributorului, si il adaug in
+     * numarul de distribuitori activi ai producatorului
+     */
     @Override
     public void getProducer(List<Producer> producerList) {
         Producer producer = searchBestProducer(producerList);
@@ -25,6 +23,9 @@ public class QuantityStrategy implements EnergyStrategy {
         producer.setCurrentDistributors(producer.getCurrentDistributors() + 1);
     }
 
+    /**
+     * Caut cel mai bun producator dupa cantitate.
+     */
     @Override
     public Producer searchBestProducer(List<Producer> producerList) {
         Producer bestProducer = new Producer();

@@ -6,25 +6,29 @@ import storage.Producer;
 import java.util.List;
 
 public class PriceStrategy implements EnergyStrategy {
-    Distributor distributor;
+    private final Distributor distributor;
 
+    /**
+     *
+     */
     public PriceStrategy(Distributor distributor) {
         this.distributor = distributor;
     }
 
-    @Override
-    public void printSal() {
-        System.out.println("Price");
-    }
-
+    /**
+     * Gasesc cel mai bun producator in functie de strategia distributorului, si il adaug in
+     * numarul de distribuitori activi ai producatorului
+     */
     @Override
     public void getProducer(List<Producer> producerList) {
-        //TODO: implement
         Producer producer = searchBestProducer(producerList);
         distributor.setCurrentProducer(producer);
         producer.setCurrentDistributors(producer.getCurrentDistributors() + 1);
     }
 
+    /**
+     * Caut cel mai bun producator dupa pret si cantitate.
+     */
     @Override
     public Producer searchBestProducer(List<Producer> producerList) {
         Producer bestProducer = new Producer();
