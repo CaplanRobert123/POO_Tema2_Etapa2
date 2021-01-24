@@ -24,7 +24,7 @@ public class Consumer implements Player {
     private int delayedDistId;
     private boolean stillPay;
 
-    /**
+    /**n
      *
      */
     public boolean isStillPay() {

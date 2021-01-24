@@ -19,4 +19,5 @@ public class ProducerChange {
     public void setEnergyPerDistributor(long energyPerDistributor) {
         this.energyPerDistributor = energyPerDistributor;
     }
+
 }

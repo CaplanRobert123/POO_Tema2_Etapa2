@@ -51,6 +51,7 @@ public class Writer {
         this.distributorList = distributorList;
     }
 
+    @JsonGetter("energyProducers")
     public List<ProducerOutput> getProducerList() {
         return producerList;
     }

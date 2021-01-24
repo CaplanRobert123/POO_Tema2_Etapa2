@@ -3,6 +3,7 @@ package data;
 import entities.EnergyType;
 import storage.MonthlyStat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProducerOutput {

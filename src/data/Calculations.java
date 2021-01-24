@@ -2,19 +2,30 @@ package data;
 
 import storage.Consumer;
 import storage.Distributor;
+import storage.Producer;
 
 public final class Calculations {
     public static final double PERCENTAGE = 1.2;
     public static final double PROFIT_PERCENTAGE = 0.2;
 
     /**
+     * Calculeaza pretul pe care distribuitorul trebuie sa il plateasca pentru energie
+     * producatoriului sau producatorilor.
+     */
+    public static float calcProducerCosts(final Distributor distributor) {
+        Producer currentProducer = distributor.getCurrentProducer();
+        double cost = currentProducer.getPriceKW() * currentProducer.getEnergyPerDistributor();
+        return Math.round(Math.floor(cost / 10));
+    }
+
+    /**
      * Calculeaza costurile lunare ale distribuitorului.
      */
     public static long calcDistributorCosts(final Distributor distributor) {
         if (distributor.getContractList().size() != 0) {
-            return distributor.getInfrastructureCost()
-                    + (distributor.getProductionCost()
-                    * distributor.getContractList().size());
+            return (long) (distributor.getInfrastructureCost()
+                                + (distributor.getProductionCost()
+                                * distributor.getContractList().size()));
         }
         return distributor.getInfrastructureCost();
     }
@@ -24,9 +35,9 @@ public final class Calculations {
      */
     public static long calcDistributorPrice(final Distributor distributor) {
         if (distributor.getContractList().size() == 0) {
-            return distributor.getInfrastructureCost()
-                    + distributor.getProductionCost()
-                    + distributor.getProfit();
+            return (long) (distributor.getInfrastructureCost()
+                                + distributor.getProductionCost()
+                                + distributor.getProfit());
         }
         return Math.round(Math.floor(distributor.getInfrastructureCost()
                 / (double) distributor.getContractList().size())

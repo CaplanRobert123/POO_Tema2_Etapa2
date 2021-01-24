@@ -3,22 +3,21 @@ package storage;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import data.ConsumerContract;
-import data.Player;
-import data.PlayerFactory;
-import data.PlayerType;
+import data.*;
 import strategies.EnergyChoiceStrategyType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 @JsonRootName(value = "Distributor")
-public class Distributor implements Player {
+public class Distributor implements Player, Observer {
     private int id;
     private int contractLength;
-    private long budget;
+    private float budget;
     private long infrastructureCost;
-    private long productionCost;
+    private float productionCost;
     private long profit;
     private long price;
     private List<ConsumerContract> contractList = new ArrayList<>();
@@ -128,14 +127,14 @@ public class Distributor implements Player {
     /**
      */
     @JsonGetter("budget")
-    public long getBudget() {
+    public float getBudget() {
         return budget;
     }
 
     /**
      */
     @JsonSetter("initialBudget")
-    public void setBudget(final long budget) {
+    public void setBudget(final float budget) {
         this.budget = budget;
     }
 
@@ -153,17 +152,14 @@ public class Distributor implements Player {
         this.infrastructureCost = infrastructureCost;
     }
 
-    /**
-     */
-    @JsonGetter("productionCost")
-    public long getProductionCost() {
+
+//    @JsonGetter("productionCost")
+    public float getProductionCost() {
         return productionCost;
     }
 
-    /**
-     */
-    @JsonSetter("initialProductionCost")
-    public void setProductionCost(final long productionCost) {
+//    @JsonSetter("initialProductionCost")
+    public void setProductionCost(final float productionCost) {
         this.productionCost = productionCost;
     }
 
@@ -176,7 +172,7 @@ public class Distributor implements Player {
                 + ", contractLength=" + contractLength
                 + ", budget=" + budget
                 + ", infrastructureCost=" + infrastructureCost
-                + ", productionCost=" + productionCost
+//                + ", productionCost=" + productionCost
                 + ", profit=" + profit
                 + ", price=" + price
                 + ", contractList=" + contractList
@@ -232,5 +228,11 @@ public class Distributor implements Player {
                 }
             }
         }
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+//        this.productionCost = (float) o;
+        System.out.println("am obs din observer");
     }
 }

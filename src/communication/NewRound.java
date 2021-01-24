@@ -2,15 +2,32 @@ package communication;
 
 import data.Calculations;
 import data.ConsumerContract;
-import storage.Consumer;
-import storage.Distributor;
-import storage.MonthlyUpdate;
-import storage.Producer;
+import storage.*;
 
 import java.util.List;
+import java.util.Observable;
 
-public final class NewRound {
-    private NewRound() {
+public final class NewRound extends Observable {
+    public NewRound() {
+    }
+
+/*    public void priceUpdated(MonthlyUpdate monthlyUpdate, float productionCost) {
+        if (monthlyUpdate.getProducerChanges().size() != 0) {
+            setChanged();
+            notifyObservers(productionCost);
+        }
+    }*/
+
+    public void priceUpdated(float productionCost) {
+        setChanged();
+        notifyObservers(productionCost);
+    }
+
+    public void addData(MonthlyUpdate monthlyUpdate) {
+        if (monthlyUpdate.getProducerChanges().size() != 0) {
+//            priceUpdated(monthlyUpdate.getProducerChanges().get(0).getEnergyPerDistributor());
+            System.out.println("alsdl");
+        }
     }
 
     /**
@@ -33,10 +50,11 @@ public final class NewRound {
      * @param distributorList lista de distribuitori asupra careia efectuez modificarile
      * @param monthlyUpdate   lista de update-uri lunare din input
      */
-    public static void doRound(final List<Consumer> consumerList,
+    public void doRound(final List<Consumer> consumerList,
                                final List<Distributor> distributorList,
                                final List<Producer> producerList,
                                final MonthlyUpdate monthlyUpdate) {
+        addData(monthlyUpdate);
         for (Distributor distributor : distributorList) {
             if (distributor.getCurrentProducer() == null) {
                 SearchProducer.findProducer(distributor, producerList);

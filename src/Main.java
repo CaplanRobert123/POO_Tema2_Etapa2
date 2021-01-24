@@ -36,13 +36,18 @@ public final class Main {
         List<Consumer> consumerList = input.getInitialData().getConsumers();
         List<Distributor> distributorList = input.getInitialData().getDistributors();
         producerList = input.getInitialData().getProducers();
+        NewRound newRound = new NewRound();
         /**
          * Sortare daca e nevoie pentru produceri
          */
 //        producerList.stream().sorted().collect(Collectors.toList());
         InitialRound.doInitialRound(consumerList, distributorList);
         for (int i = 0; i < input.getNumberOfTurns(); i++) {
-            NewRound.doRound(consumerList, distributorList, producerList, input.getMonthlyUpdates().get(i));
+            for (Distributor distributor : distributorList) {
+                newRound.addObserver(distributor);
+            }
+            newRound.doRound(consumerList, distributorList, producerList,
+                    input.getMonthlyUpdates().get(i));
             for (Distributor distributor : distributorList) {
                 for (int j = distributor.getContractList().size() - 1; j >= 0; j--) {
                     if (consumerList.get(distributor
@@ -63,10 +68,13 @@ public final class Main {
         }
         for (Distributor distributor : distributorList) {
             DistributorOutput distributorOutput = new DistributorOutput(distributor.getId(),
-                    distributor.getBudget(),
+                    (long) distributor.getBudget(),
                     distributor.getIsBankrupt(),
                     distributor.getContractList(),
-                    distributor.getCurrentProducer());
+                    distributor.getCurrentProducer(),
+                    distributor.getEnergyNeededKW(),
+                    distributor.getPrice(),
+                    distributor.getProducerStrategy());
             distributorListOutput.add(distributorOutput);
         }
         for (Producer producer : producerList) {
@@ -80,6 +88,6 @@ public final class Main {
         }
         Writer writer = new Writer(consumerListOutput, distributorListOutput, producerListOutput);
 //        writer.doWrite(objectMapper, args[1]);
-        writer.doWrite(objectMapper, "D:/result.txt");
+        writer.doWrite(objectMapper, "D:/result.json");
     }
 }
